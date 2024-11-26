@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 
 //Used to create a new customer
 public record CustomerRegister(
-        @NotBlank
+        @NotBlank(message = "{customer.name.mandatory}")
         String name,
         String socialName,
-        @NotBlank
+        @NotBlank(message = "{customer.finantialnumber.mandatory}")
         String finantialNumber,
         String socialNumber) {
 

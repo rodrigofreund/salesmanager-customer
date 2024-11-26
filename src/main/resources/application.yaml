@@ -1,8 +1,15 @@
+server:
+  error:
+    include-stacktrace: never
 spring:
   application:
     name: salesmanager-customer
   h2:
     console.enabled: true
+  data:
+    web:
+      pageable:
+        size-parameter: 10
   datasource:
     url: jdbc:h2:mem:mydb;MODE=MySQL
     username: sa
@@ -10,5 +17,10 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true

@@ -1,3 +1,6 @@
+server:
+  error:
+    include-stacktrace: never
 spring:
   application:
     name:salesmanager-customer

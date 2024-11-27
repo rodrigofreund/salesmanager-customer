@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.rodrigofreund.salesmanager.customer.controller.dto.OrderData;
 import com.rodrigofreund.salesmanager.customer.controller.dto.OrderDetail;
 import com.rodrigofreund.salesmanager.customer.controller.dto.OrderUpdate;
-import com.rodrigofreund.salesmanager.customer.repository.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.infra.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.repository.OrderRepository;
 import com.rodrigofreund.salesmanager.customer.repository.model.order.OrderFactory;
 import com.rodrigofreund.salesmanager.customer.repository.model.order.OrderRegister;

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.SoftDelete;
 
-import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerEntity;
+import com.rodrigofreund.salesmanager.customer.infra.CustomerEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

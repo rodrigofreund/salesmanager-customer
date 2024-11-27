@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.rodrigofreund.salesmanager.customer.controller.dto.OrderData;
 import com.rodrigofreund.salesmanager.customer.controller.dto.OrderDetail;
-import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerEntity;
+import com.rodrigofreund.salesmanager.customer.infra.CustomerEntity;
 
 @Component
 public class OrderFactoryImpl implements OrderFactory {

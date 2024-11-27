@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.repository.model.customer;
+package com.rodrigofreund.salesmanager.customer.infra;
 
 import java.util.Set;
 

@@ -5,9 +5,11 @@ import org.springframework.stereotype.Component;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerData;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
+import com.rodrigofreund.salesmanager.customer.domain.entity.Customer;
+import com.rodrigofreund.salesmanager.customer.infra.CustomerEntity;
 
 @Component
-public class CustomerFactoryImpl implements CustomerFactory {
+public class CustomerMapperImpl implements CustomerMapper {
     @Override
     public CustomerEntity toCustomerEntity(CustomerRegister register) {
         return CustomerEntity.builder()
@@ -34,5 +36,14 @@ public class CustomerFactoryImpl implements CustomerFactory {
                 customer.getSocialName(),
                 customer.getFinantialNumber(),
                 customer.getSocialNumber());
+    }
+    @Override
+    public CustomerEntity toCustomerEntity(Customer customer) {
+        return CustomerEntity.builder()
+                .name(customer.getName())
+                .finantialNumber(customer.getFinantialNumber())
+                .socialName(customer.getSocialName())
+                .finantialNumber(customer.getFinantialNumber())
+                .build();
     }
 }

@@ -17,8 +17,8 @@ import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerData;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerUpdate;
-import com.rodrigofreund.salesmanager.customer.repository.CustomerRepository;
-import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerFactory;
+import com.rodrigofreund.salesmanager.customer.infra.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerMapper;
 
 import jakarta.validation.Valid;
 
@@ -27,10 +27,10 @@ import jakarta.validation.Valid;
 public class CustomerController {
 
     private CustomerRepository customerRepository;
-    private CustomerFactory customerFactory;
+    private CustomerMapper customerFactory;
 
     private CustomerController(
-            CustomerFactory customerFactory,
+            CustomerMapper customerFactory,
             CustomerRepository customerRepository) {
 
         this.customerRepository = customerRepository;

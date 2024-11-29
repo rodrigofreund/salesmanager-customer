@@ -46,4 +46,13 @@ public class CustomerMapperImpl implements CustomerMapper {
                 .finantialNumber(customer.getFinantialNumber())
                 .build();
     }
+
+    @Override
+    public Customer toCustomer(CustomerEntity customer) {
+        return new Customer(customer.getName(), customer.getSocialName(), customer.getFinantialNumber());
+    }
+    @Override
+    public Customer toCustomer(CustomerRegister customer) {
+        return new Customer(customer.name(), customer.socialName(), customer.finantialNumber());
+    }
 }

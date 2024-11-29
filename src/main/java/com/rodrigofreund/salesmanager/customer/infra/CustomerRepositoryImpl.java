@@ -9,23 +9,28 @@ import com.rodrigofreund.salesmanager.customer.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerMapper;
 
 @Repository
-public class CustomerRepositorySpring implements CustomerRepository {
+public class CustomerRepositoryImpl implements CustomerRepository {
 
     private CustomerRepositoryJpa repository;
     private CustomerMapper mappper;
 
-    public CustomerRepositorySpring(CustomerRepositoryJpa repository) {
+    public CustomerRepositoryImpl(
+            CustomerRepositoryJpa repository,
+            CustomerMapper mapper) {
         this.repository = repository;
+        this.mappper = mapper;
     }
 
     @Override
     public Customer persistCustomer(Customer customer) {
-        return repository.save(customer);
+        //Convert from Customer to CustomerEntity
+        return mappper.toCustomer(repository.save(mappper.toCustomerEntity(customer)));
     }
 
     @Override
     public Collection<Customer> listCustomer() {
-        return repository.findAll().stream().map(CustomerMapper::);
+        //return repository.findAll().stream().map(CustomerMapper::);
+        return null;
     }
 
 }

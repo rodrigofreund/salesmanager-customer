@@ -12,6 +12,8 @@ public interface CustomerMapper {
     CustomerEntity toCustomerEntity(Customer customer);
     CustomerData toCustomerData(CustomerEntity entity);
     CustomerDetail toCustomerDetail(CustomerEntity customer);
+    Customer toCustomer(CustomerEntity customer);
+    Customer toCustomer(CustomerRegister customer);
 
 
 }

@@ -2,6 +2,9 @@ package com.rodrigofreund.salesmanager.customer.domain.entity;
 
 import com.rodrigofreund.salesmanager.customer.domain.Address;
 
+/**
+ * Business Customer Entity
+ */
 public class Customer {
 
     private String name;

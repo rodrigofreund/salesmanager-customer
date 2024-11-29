@@ -1,0 +1,15 @@
+
+Entities
+	Raw objects that represents business entities, data and behavior.
+	Package
+		com.rodrigofreund.salesmanager.customer.domain.entity
+
+Use Case
+	Business process as register new customer, invalidate a customer and etc.
+	Package
+		com.rodrigofreund.salesmanager.customer.usecase
+
+Gateways
+	Implementation of the architecture
+	Package
+		com.rodrigofreund.salesmanager.customer.gateway

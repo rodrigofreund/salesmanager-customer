@@ -17,25 +17,38 @@ import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerData;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerUpdate;
-import com.rodrigofreund.salesmanager.customer.infra.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerMapper;
+import com.rodrigofreund.salesmanager.customer.usecase.CreateCustomer;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("salesmanager-customer")
-public class CustomerController {
+public final class CustomerController {
 
-    private CustomerRepository customerRepository;
-    private CustomerMapper customerFactory;
+    private final CustomerMapper customerFactory;
+    private final CreateCustomer createCustomer;
 
     private CustomerController(
-            CustomerMapper customerFactory,
-            CustomerRepository customerRepository) {
+            CreateCustomer createCustomer,
+            CustomerMapper customerFactory) {
 
-        this.customerRepository = customerRepository;
         this.customerFactory = customerFactory;
+        this.createCustomer = createCustomer;
+    }
 
+    @PostMapping
+    public ResponseEntity<CustomerDetail> register(
+            @RequestBody @Valid CustomerRegister customerRegister,
+            UriComponentsBuilder uriBuilder) {
+
+        //var medico = customerRepository.save(customerFactory.toCustomerEntity(customerRegister));
+        var newCustomer = createCustomer.createCustomer(customerFactory.toCustomer(customerRegister));
+
+        var uri = uriBuilder.path("/salesmanager-customer/{finantialNumber}")
+                .buildAndExpand(newCustomer.getFinantialNumber()).toUri();
+
+        return ResponseEntity.created(uri).body(customerFactory.toCustomerDetail(newCustomer));
     }
 
     @GetMapping
@@ -50,19 +63,6 @@ public class CustomerController {
                 customerFactory.toCustomerDetail(
                         customerRepository.getReferenceById(id))
                 );
-    }
-
-    @PostMapping
-    public ResponseEntity<CustomerDetail> register(
-            @RequestBody @Valid CustomerRegister customerRegister,
-            UriComponentsBuilder uriBuilder) {
-
-        var medico = customerRepository.save(customerFactory.toCustomerEntity(customerRegister));
-
-        var uri = uriBuilder.path("/salesmanager-customer/{id}")
-                .buildAndExpand(medico.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(customerFactory.toCustomerDetail(medico));
     }
 
     @PutMapping

@@ -2,17 +2,17 @@ package com.rodrigofreund.salesmanager.customer.infra;
 
 import java.util.Collection;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.rodrigofreund.salesmanager.customer.domain.entity.Customer;
 import com.rodrigofreund.salesmanager.customer.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerMapper;
 
-@Repository
-public class CustomerRepositoryImpl implements CustomerRepository {
+public final class CustomerRepositoryImpl implements CustomerRepository {
 
-    private CustomerRepositoryJpa repository;
-    private CustomerMapper mappper;
+    private final CustomerRepositoryJpa repository;
+    private final CustomerMapper mappper;
 
     public CustomerRepositoryImpl(
             CustomerRepositoryJpa repository,
@@ -23,14 +23,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public Customer persistCustomer(Customer customer) {
-        //Convert from Customer to CustomerEntity
         return mappper.toCustomer(repository.save(mappper.toCustomerEntity(customer)));
     }
 
     @Override
-    public Collection<Customer> listCustomer() {
-        //return repository.findAll().stream().map(CustomerMapper::);
-        return null;
+    public Collection<Customer> listCustomer(Pageable pageable) {
+        return repository.findAll(pageable).stream().map(mappper::toCustomer).toList();
     }
 
 }

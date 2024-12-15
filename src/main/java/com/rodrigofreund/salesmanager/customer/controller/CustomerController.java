@@ -1,5 +1,7 @@
 package com.rodrigofreund.salesmanager.customer.controller;
 
+import java.net.URI;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerData;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerUpdate;
+import com.rodrigofreund.salesmanager.customer.domain.entity.Customer;
 import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerMapper;
 import com.rodrigofreund.salesmanager.customer.usecase.CreateCustomer;
 
@@ -42,32 +45,39 @@ public final class CustomerController {
             @RequestBody @Valid CustomerRegister customerRegister,
             UriComponentsBuilder uriBuilder) {
 
-        //var medico = customerRepository.save(customerFactory.toCustomerEntity(customerRegister));
         var newCustomer = createCustomer.createCustomer(customerFactory.toCustomer(customerRegister));
 
-        var uri = uriBuilder.path("/salesmanager-customer/{finantialNumber}")
-                .buildAndExpand(newCustomer.getFinantialNumber()).toUri();
+        //it lacks to persist
+
+        var uri = createUri(uriBuilder, newCustomer);
 
         return ResponseEntity.created(uri).body(customerFactory.toCustomerDetail(newCustomer));
     }
 
     @GetMapping
     public ResponseEntity<Page<CustomerData>> list(Pageable pageable) {
-        var page = customerRepository.findAll(pageable).map(customerFactory::toCustomerData);
-        return ResponseEntity.ok(page);
+
+        //var page = customerRepository.findAll(pageable).map(customerFactory::toCustomerData);
+        //return ResponseEntity.ok(page);
+        return null;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDetail> detail(@PathVariable Integer id) {
+        /*
         return ResponseEntity.ok(
                 customerFactory.toCustomerDetail(
                         customerRepository.getReferenceById(id))
                 );
+                */
+        return ResponseEntity.ok(null);
     }
 
     @PutMapping
     public ResponseEntity<CustomerDetail> update(
             @Valid @RequestBody CustomerUpdate customerUpdate) {
+        
+        /*
 
         var customer = customerRepository.getReferenceById(customerUpdate.id());
 
@@ -82,14 +92,26 @@ public final class CustomerController {
         }
 
         customerRepository.save(customer);
+        
+        return ResponseEntity.ok(customerFactory.toCustomerDetail(new Customer()));
+        
+        */
 
-        return ResponseEntity.ok(customerFactory.toCustomerDetail(customer));
+        return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> exclude(@PathVariable Integer id) {
+        /*
         var customer = customerRepository.getReferenceById(id);
         customerRepository.delete(customer);
         return ResponseEntity.noContent().build();
+        */
+        return ResponseEntity.noContent().build();
+    }
+    
+    private URI createUri(UriComponentsBuilder uriBuilder, Customer newCustomer) {
+        return uriBuilder.path("/salesmanager-customer/{finantialNumber}")
+                .buildAndExpand(newCustomer.getFinantialNumber()).toUri();
     }
 }

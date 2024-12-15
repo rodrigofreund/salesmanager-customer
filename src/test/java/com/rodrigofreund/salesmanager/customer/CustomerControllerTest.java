@@ -13,7 +13,7 @@ import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
 import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class HttpRequestTest {
+public class CustomerControllerTest {
 
     @LocalServerPort
     private int port;

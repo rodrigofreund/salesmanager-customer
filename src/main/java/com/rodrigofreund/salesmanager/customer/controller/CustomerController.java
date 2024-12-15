@@ -81,9 +81,9 @@ public class CustomerController {
             customer.setSocialNumber(customerUpdate.socialNumber());
         }
 
-        customerRepository.save(customer);
+        var newCustomer = customerRepository.save(customer);
 
-        return ResponseEntity.ok(customerFactory.toCustomerDetail(customer));
+        return ResponseEntity.ok(customerFactory.toCustomerDetail(newCustomer));
     }
 
     @DeleteMapping("/{id}")

@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.controller.dto;
+package com.rodrigofreund.salesmanager.customer.naousar.controller.dto;
 
 public record CustomerData(
         Integer id,

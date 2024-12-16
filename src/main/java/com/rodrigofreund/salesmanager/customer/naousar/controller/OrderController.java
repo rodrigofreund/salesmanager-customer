@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.controller;
+package com.rodrigofreund.salesmanager.customer.naousar.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.rodrigofreund.salesmanager.customer.controller.dto.OrderData;
-import com.rodrigofreund.salesmanager.customer.controller.dto.OrderDetail;
-import com.rodrigofreund.salesmanager.customer.controller.dto.OrderUpdate;
-import com.rodrigofreund.salesmanager.customer.repository.CustomerRepository;
-import com.rodrigofreund.salesmanager.customer.repository.OrderRepository;
-import com.rodrigofreund.salesmanager.customer.repository.model.order.OrderFactory;
-import com.rodrigofreund.salesmanager.customer.repository.model.order.OrderRegister;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.OrderData;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.OrderDetail;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.OrderUpdate;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.OrderRepository;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.model.order.OrderFactory;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.model.order.OrderRegister;
 
 import jakarta.validation.Valid;
 

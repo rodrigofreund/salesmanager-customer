@@ -1,10 +1,10 @@
-package com.rodrigofreund.salesmanager.customer.repository.model.customer;
+package com.rodrigofreund.salesmanager.customer.naousar.repository.model.customer;
 
 import org.springframework.stereotype.Component;
 
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerData;
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerData;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerRegister;
 
 @Component
 public class CustomerFactoryImpl implements CustomerFactory {

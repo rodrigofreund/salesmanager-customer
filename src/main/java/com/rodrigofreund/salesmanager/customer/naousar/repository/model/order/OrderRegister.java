@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.repository.model.order;
+package com.rodrigofreund.salesmanager.customer.naousar.repository.model.order;
 
 import java.time.LocalDateTime;
 

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.rodrigofreund.salesmanager.customer.controller.CustomerController;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.CustomerController;
 
 @SpringBootTest
 public class SmokeTest {

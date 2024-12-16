@@ -1,10 +1,10 @@
-package com.rodrigofreund.salesmanager.customer.repository.model.order;
+package com.rodrigofreund.salesmanager.customer.naousar.repository.model.order;
 
 import org.springframework.stereotype.Component;
 
-import com.rodrigofreund.salesmanager.customer.controller.dto.OrderData;
-import com.rodrigofreund.salesmanager.customer.controller.dto.OrderDetail;
-import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerEntity;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.OrderData;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.OrderDetail;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.model.customer.CustomerEntity;
 
 @Component
 public class OrderFactoryImpl implements OrderFactory {

@@ -1,10 +1,10 @@
-package com.rodrigofreund.salesmanager.customer.repository.model.customer;
+package com.rodrigofreund.salesmanager.customer.naousar.repository.model.customer;
 
 import java.util.Set;
 
 import org.hibernate.annotations.SoftDelete;
 
-import com.rodrigofreund.salesmanager.customer.repository.model.order.OrderEntity;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.model.order.OrderEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

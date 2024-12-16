@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.controller;
+package com.rodrigofreund.salesmanager.customer.naousar.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerData;
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerDetail;
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerRegister;
-import com.rodrigofreund.salesmanager.customer.controller.dto.CustomerUpdate;
-import com.rodrigofreund.salesmanager.customer.repository.CustomerRepository;
-import com.rodrigofreund.salesmanager.customer.repository.model.customer.CustomerFactory;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerData;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerRegister;
+import com.rodrigofreund.salesmanager.customer.naousar.controller.dto.CustomerUpdate;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.naousar.repository.model.customer.CustomerFactory;
 
 import jakarta.validation.Valid;
 
@@ -46,6 +46,21 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDetail> detail(@PathVariable Integer id) {
+        return ResponseEntity.ok(
+                customerFactory.toCustomerDetail(
+                        customerRepository.getReferenceById(id))
+                );
+    }
+
+    @GetMapping("/check/{id}")
+    public ResponseEntity<CustomerDetail> check(@PathVariable Integer id) {
+        
+        var customer = customerRepository.findById(id);
+        
+        if(customer.isPresent()) {
+            customer.get().setName("new name");
+        }
+        
         return ResponseEntity.ok(
                 customerFactory.toCustomerDetail(
                         customerRepository.getReferenceById(id))

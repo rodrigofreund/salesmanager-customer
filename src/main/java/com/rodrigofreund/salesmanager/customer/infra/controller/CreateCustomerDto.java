@@ -1,9 +1,9 @@
-package com.rodrigofreund.salesmanager.customer.naousar.controller.dto;
+package com.rodrigofreund.salesmanager.customer.infra.controller;
 
 import jakarta.validation.constraints.NotBlank;
 
 //Used to create a new customer
-public record CustomerRegister(
+public record CreateCustomerDto(
         @NotBlank(message = "{customer.name.mandatory}")
         String name,
         String socialName,

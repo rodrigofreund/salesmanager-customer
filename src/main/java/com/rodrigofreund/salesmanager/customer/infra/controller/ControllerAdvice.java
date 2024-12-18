@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.naousar.controller;
+package com.rodrigofreund.salesmanager.customer.infra.controller;
 
 import java.util.List;
 

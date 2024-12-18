@@ -1,10 +1,6 @@
-package com.rodrigofreund.salesmanager.customer.naousar.repository.model.customer;
-
-import java.util.Set;
+package com.rodrigofreund.salesmanager.customer.infra.persistency;
 
 import org.hibernate.annotations.SoftDelete;
-
-import com.rodrigofreund.salesmanager.customer.naousar.repository.model.order.OrderEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -53,8 +48,6 @@ public class CustomerEntity {
     private String finantialNumber;
     @Setter
     private String socialNumber;
-    @OneToMany(mappedBy="customer")
-    private Set<OrderEntity> orders;
 
     //enums
     //@Enumerated(EnumType.STRING)

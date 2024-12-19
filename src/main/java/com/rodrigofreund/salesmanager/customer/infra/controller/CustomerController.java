@@ -1,16 +1,18 @@
 package com.rodrigofreund.salesmanager.customer.infra.controller;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriBuilderFactory;
 
 import com.rodrigofreund.salesmanager.customer.application.usecases.CreateCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecases.RetriveCustomer;
 import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapper;
 
 @RestController
@@ -18,15 +20,23 @@ import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapper;
 final class CustomerController {
 
     private final CreateCustomer createCustomer;
+    private final RetriveCustomer retriveCustomer;
     private final CustomerMapper customerMapper;
 
-    public CustomerController(CreateCustomer createCustomer, CustomerMapper customerMapper) {
+    public CustomerController(
+            CreateCustomer createCustomer,
+            CustomerMapper customerMapper,
+            RetriveCustomer retriveCustomer) {
+
         this.createCustomer = createCustomer;
         this.customerMapper = customerMapper;
+        this.retriveCustomer = retriveCustomer;
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDetail> createCustomer(@RequestBody CreateCustomerDto newCustomer) {
+    public ResponseEntity<CustomerDetail> createCustomer(
+            @RequestBody CreateCustomerDto newCustomer,
+            UriBuilderFactory factory) {
 
         var customerDetail =
                 customerMapper.toCustomerDetail(
@@ -35,13 +45,19 @@ final class CustomerController {
 
         return ResponseEntity.ok(customerDetail);
     }
-    
+
     @GetMapping
-    public ResponseEntity<Page<CustomerDetail>> getCustomerList(
-            @PageableDefault(size = 10, sort = {"name"}) Pageable paginacao) {
+    public ResponseEntity<List<CustomerDetail>> getCustomerList(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size,
+            @RequestParam(defaultValue = "name") String sort) {
         
-        return null;
-        
+        var customerDetailList =
+                this.retriveCustomer.listCustomer(page, size, sort)
+                .stream().map(customerMapper::toCustomerDetail)
+                .toList();
+
+        return ResponseEntity.ok(customerDetailList);
     }
 
 }

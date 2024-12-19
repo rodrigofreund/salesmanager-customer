@@ -1,6 +1,8 @@
-package com.rodrigofreund.salesmanager.customer;
+package com.rodrigofreund.salesmanager.customer.test.integration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import com.rodrigofreund.salesmanager.customer.infra.controller.CreateCustomerDt
 import com.rodrigofreund.salesmanager.customer.infra.controller.CustomerDetail;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class CustomerControllerTest {
+public class CustomerControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -36,7 +38,7 @@ public class CustomerControllerTest {
     
     @Test
     void getCustomerList() {
-        var code = this.restTemplate.getForEntity("/customer", CustomerDetail.class).getStatusCode();
+        var code = this.restTemplate.getForEntity("/customer", List.class).getStatusCode();
         assertTrue(code.is2xxSuccessful());
     }
 

@@ -1,10 +1,9 @@
-package com.rodrigofreund.salesmanager.customer;
-
+package com.rodrigofreund.salesmanager.customer.test.integration;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SalesmanagerCustomerApplicationTests {
+class SalesmanagerCustomerApplicationIntegrationTests {
 
 	@Test
 	void contextLoads() {

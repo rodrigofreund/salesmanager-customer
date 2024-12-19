@@ -1,10 +1,10 @@
-package com.rodrigofreund.salesmanager.customer;
+package com.rodrigofreund.salesmanager.customer.test.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class SmokeTest {
+public class SmokeIntegrationTest {
 
     /*
     @Autowired

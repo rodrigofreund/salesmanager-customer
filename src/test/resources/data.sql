@@ -4,7 +4,7 @@ INSERT INTO customer (
     social_name,
     social_number,
     deleted) VALUES (
-    '45323894',
+    '453238944323',
     'Rodrigo',
     'Rodrigo Moraes',
     '44343',
@@ -16,7 +16,7 @@ INSERT INTO customer (
     social_name,
     social_number,
     deleted) VALUES (
-    '45323895',
+    '453238944321',
     'Ana',
     'Ana Moraes',
     '44323',
@@ -28,7 +28,7 @@ INSERT INTO customer (
     social_name,
     social_number,
     deleted) VALUES (
-    '3464365',
+    '453238944322',
     'Pedro',
     'Pedro Vasconselos',
     '536854',

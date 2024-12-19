@@ -6,10 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import com.rodrigofreund.salesmanager.customer.application.gateways.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.application.usecases.CreateCustomer;
 import com.rodrigofreund.salesmanager.customer.application.usecases.CreateCustomerImpl;
-import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapperImpl;
+import com.rodrigofreund.salesmanager.customer.application.usecases.RetriveCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecases.RetriveCustomerImpl;
 import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapper;
+import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapperImpl;
 import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerRepositoryImpl;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerJpaRepository;
+
+/**
+ * Class responsible for beans creation
+ */
 
 @Configuration
 public class CustomerBeans {
@@ -27,5 +33,10 @@ public class CustomerBeans {
     @Bean
     public CustomerMapper createCustomerMapper() {
         return new CustomerMapperImpl();
+    }
+
+    @Bean
+    public RetriveCustomer createRetriveCustomer(CustomerRepository repository) {
+        return new RetriveCustomerImpl(repository);
     }
 }

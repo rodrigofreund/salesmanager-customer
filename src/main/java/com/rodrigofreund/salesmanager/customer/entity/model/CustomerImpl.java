@@ -76,10 +76,6 @@ public final class CustomerImpl implements Customer {
         this.socialNumber = socialNumber;
     }
 
-    private CustomerImpl(CustomerImpl other) {
-        new CustomerImpl(other.id, other.name, other.socialName, other.finantialNumber, other.socialNumber);
-    }
-
     private void setFinantialNumber(String finantialNumber) {
         if(finantialNumber == null || finantialNumber.isBlank() || finantialNumber.length() < 12)
             throw new IllegalArgumentException();

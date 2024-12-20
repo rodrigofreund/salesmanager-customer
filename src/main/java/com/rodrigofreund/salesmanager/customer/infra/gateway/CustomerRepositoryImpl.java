@@ -1,11 +1,11 @@
-package com.rodrigofreund.salesmanager.customer.infra.gateways;
+package com.rodrigofreund.salesmanager.customer.infra.gateway;
 
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import com.rodrigofreund.salesmanager.customer.application.gateways.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.entity.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerJpaRepository;
 import com.rodrigofreund.salesmanager.domain.Customer;
 

@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.infra.controller;
+package com.rodrigofreund.salesmanager.customer.application.dto;
 
 public record CustomerDetail(
     Integer id,

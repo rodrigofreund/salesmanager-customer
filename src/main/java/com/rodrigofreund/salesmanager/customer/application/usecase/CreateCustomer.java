@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.application.usecases;
+package com.rodrigofreund.salesmanager.customer.application.usecase;
 
 import com.rodrigofreund.salesmanager.domain.Customer;
 

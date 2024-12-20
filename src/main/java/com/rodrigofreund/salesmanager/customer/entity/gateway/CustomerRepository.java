@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.application.gateways;
+package com.rodrigofreund.salesmanager.customer.entity.gateway;
 
 import java.util.List;
 

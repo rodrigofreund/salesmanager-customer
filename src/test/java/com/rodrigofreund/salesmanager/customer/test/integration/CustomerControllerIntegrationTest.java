@@ -10,9 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatusCode;
 
-import com.rodrigofreund.salesmanager.customer.infra.controller.CreateCustomerDto;
-import com.rodrigofreund.salesmanager.customer.infra.controller.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.application.dto.CreateCustomerDto;
+import com.rodrigofreund.salesmanager.customer.application.dto.CustomerDetail;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CustomerControllerIntegrationTest {
@@ -41,6 +42,13 @@ public class CustomerControllerIntegrationTest {
         var code = this.restTemplate.getForEntity("/customer", List.class).getStatusCode();
         assertTrue(code.is2xxSuccessful());
     }
+    
+    @Test
+    void getCustomerListWithPageSize() {
+        var response = this.restTemplate.getForEntity("/customer?size=5", List.class);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+        assertTrue(response.getBody().size() == 5);
+    }
 
     @Test
     void postCustomerRegister() throws Exception {
@@ -57,7 +65,7 @@ public class CustomerControllerIntegrationTest {
                         customerRegister,
                         CustomerDetail.class).getStatusCode();
 
-        assertTrue(code.is2xxSuccessful());
+        assertTrue(code.isSameCodeAs(HttpStatusCode.valueOf(201)));
     }
     
     /*

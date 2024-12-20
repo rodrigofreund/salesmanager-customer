@@ -1,8 +1,8 @@
-package com.rodrigofreund.salesmanager.customer.infra.gateways;
+package com.rodrigofreund.salesmanager.customer.infra.gateway;
 
-import com.rodrigofreund.salesmanager.customer.infra.controller.CreateCustomerDto;
-import com.rodrigofreund.salesmanager.customer.infra.controller.CustomerDetail;
-import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerEntity;
+import com.rodrigofreund.salesmanager.customer.application.dto.CreateCustomerDto;
+import com.rodrigofreund.salesmanager.customer.application.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.infra.persistency.entity.CustomerEntity;
 import com.rodrigofreund.salesmanager.domain.Customer;
 
 public interface CustomerMapper {

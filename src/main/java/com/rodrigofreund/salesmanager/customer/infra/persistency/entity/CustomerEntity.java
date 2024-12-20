@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.infra.persistency;
+package com.rodrigofreund.salesmanager.customer.infra.persistency.entity;
 
 import org.hibernate.annotations.SoftDelete;
 

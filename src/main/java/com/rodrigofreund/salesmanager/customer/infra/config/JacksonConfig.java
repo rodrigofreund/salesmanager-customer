@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.config;
+package com.rodrigofreund.salesmanager.customer.infra.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;

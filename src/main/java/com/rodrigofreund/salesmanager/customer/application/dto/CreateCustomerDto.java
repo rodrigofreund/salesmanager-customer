@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.infra.controller;
+package com.rodrigofreund.salesmanager.customer.application.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

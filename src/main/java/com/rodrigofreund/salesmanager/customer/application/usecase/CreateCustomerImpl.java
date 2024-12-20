@@ -1,6 +1,6 @@
-package com.rodrigofreund.salesmanager.customer.application.usecases;
+package com.rodrigofreund.salesmanager.customer.application.usecase;
 
-import com.rodrigofreund.salesmanager.customer.application.gateways.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.entity.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.domain.Customer;
 
 public final class CreateCustomerImpl implements CreateCustomer {

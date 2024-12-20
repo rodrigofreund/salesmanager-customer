@@ -1,16 +1,16 @@
-package com.rodrigofreund.salesmanager.customer.config;
+package com.rodrigofreund.salesmanager.customer.infra.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.rodrigofreund.salesmanager.customer.application.gateways.CustomerRepository;
-import com.rodrigofreund.salesmanager.customer.application.usecases.CreateCustomer;
-import com.rodrigofreund.salesmanager.customer.application.usecases.CreateCustomerImpl;
-import com.rodrigofreund.salesmanager.customer.application.usecases.RetriveCustomer;
-import com.rodrigofreund.salesmanager.customer.application.usecases.RetriveCustomerImpl;
-import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapper;
-import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapperImpl;
-import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerRepositoryImpl;
+import com.rodrigofreund.salesmanager.customer.application.usecase.CreateCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecase.CreateCustomerImpl;
+import com.rodrigofreund.salesmanager.customer.application.usecase.RetriveCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecase.RetriveCustomerImpl;
+import com.rodrigofreund.salesmanager.customer.entity.gateway.CustomerRepository;
+import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapper;
+import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapperImpl;
+import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerRepositoryImpl;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerJpaRepository;
 
 /**

@@ -33,3 +33,63 @@ INSERT INTO customer (
     'Pedro Vasconselos',
     '536854',
     false);
+
+INSERT INTO customer (
+    finantial_number,
+    name,
+    social_name,
+    social_number,
+    deleted) VALUES (
+    '453238944331',
+    'Carlos',
+    'Carlos Vasconselos',
+    '536855',
+    false);
+
+INSERT INTO customer (
+    finantial_number,
+    name,
+    social_name,
+    social_number,
+    deleted) VALUES (
+    '453238944332',
+    'Antonio',
+    'Pedro Vasconselos',
+    '536856',
+    false);
+    
+INSERT INTO customer (
+    finantial_number,
+    name,
+    social_name,
+    social_number,
+    deleted) VALUES (
+    '453238944333',
+    'Joana',
+    'Pedro Vasconselos',
+    '536857',
+    false);
+    
+INSERT INTO customer (
+    finantial_number,
+    name,
+    social_name,
+    social_number,
+    deleted) VALUES (
+    '453238944334',
+    'Pat',
+    'Pedro Vasconselos',
+    '536858',
+    false);
+    
+INSERT INTO customer (
+    finantial_number,
+    name,
+    social_name,
+    social_number,
+    deleted) VALUES (
+    '453238944335',
+    'Serafina',
+    'Pedro Vasconselos',
+    '536859',
+    false);

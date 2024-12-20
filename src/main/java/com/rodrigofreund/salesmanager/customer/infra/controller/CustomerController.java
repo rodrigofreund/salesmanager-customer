@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriBuilderFactory;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import com.rodrigofreund.salesmanager.customer.application.usecases.CreateCustomer;
-import com.rodrigofreund.salesmanager.customer.application.usecases.RetriveCustomer;
-import com.rodrigofreund.salesmanager.customer.infra.gateways.CustomerMapper;
+import com.rodrigofreund.salesmanager.customer.application.dto.CreateCustomerDto;
+import com.rodrigofreund.salesmanager.customer.application.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.application.usecase.CreateCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecase.RetriveCustomer;
+import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapper;
 
 @RestController
 @RequestMapping("/customer")
@@ -36,14 +38,17 @@ final class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerDetail> createCustomer(
             @RequestBody CreateCustomerDto newCustomer,
-            UriBuilderFactory factory) {
+            UriComponentsBuilder uriBuilder) {
 
         var customerDetail =
                 customerMapper.toCustomerDetail(
                         createCustomer.createCustomer(
                                 customerMapper.toCustomer(newCustomer)));
 
-        return ResponseEntity.ok(customerDetail);
+        var uri = uriBuilder.path("/customer/{id}")
+                .buildAndExpand(customerDetail.id()).toUri();
+
+        return ResponseEntity.created(uri).body(customerDetail);
     }
 
     @GetMapping

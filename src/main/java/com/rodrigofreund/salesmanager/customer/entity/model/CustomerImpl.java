@@ -1,4 +1,4 @@
-package com.rodrigofreund.salesmanager.customer.domain;
+package com.rodrigofreund.salesmanager.customer.entity.model;
 
 import com.rodrigofreund.salesmanager.domain.Customer;
 

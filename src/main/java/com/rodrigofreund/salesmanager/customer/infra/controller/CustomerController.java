@@ -19,7 +19,7 @@ import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapper;
 
 @RestController
 @RequestMapping("/customer")
-final class CustomerController {
+public final class CustomerController {
 
     private final CreateCustomer createCustomer;
     private final RetriveCustomer retriveCustomer;

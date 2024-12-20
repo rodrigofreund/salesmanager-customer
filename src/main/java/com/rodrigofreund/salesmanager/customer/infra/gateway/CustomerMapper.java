@@ -7,10 +7,6 @@ import com.rodrigofreund.salesmanager.domain.Customer;
 
 public interface CustomerMapper {
 
-    CustomerEntity toCustomerEntity(CreateCustomerDto register);
-
-    CustomerDetail toCustomerDetail(CustomerEntity customer);
-
     CustomerEntity toCustomerEntity(Customer customer);
 
     Customer toCustomer(CustomerEntity entity);

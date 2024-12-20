@@ -9,26 +9,6 @@ import com.rodrigofreund.salesmanager.domain.Customer;
 public class CustomerMapperImpl implements CustomerMapper {
 
     @Override
-    public CustomerEntity toCustomerEntity(CreateCustomerDto register) {
-        return CustomerEntity.builder()
-                .name(register.name())
-                .socialName(register.socialName())
-                .finantialNumber(register.finantialNumber())
-                .socialNumber(register.socialNumber())
-                .build();
-    }
-
-    @Override
-    public CustomerDetail toCustomerDetail(CustomerEntity customer) {
-        return new CustomerDetail(
-                customer.getId(),
-                customer.getName(),
-                customer.getSocialName(),
-                customer.getFinantialNumber(),
-                customer.getSocialNumber());
-    }
-
-    @Override
     public CustomerEntity toCustomerEntity(Customer customer) {
         return CustomerEntity.builder()
                 .name(customer.name())

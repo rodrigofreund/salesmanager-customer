@@ -22,6 +22,14 @@ public final class CustomerImpl implements Customer {
             ) {
         return new CustomerImpl(null, name, socialName, finantialNumber, socialNumber);
     }
+    
+    public static Customer of(Customer other) {
+        return of(
+                other.name(),
+                other.socialName(),
+                other.finantialNumber(),
+                other.socialNumber());
+    }
 
     private Integer id;
     private String name;
@@ -52,10 +60,6 @@ public final class CustomerImpl implements Customer {
     @Override
     public String socialNumber() {
         return socialNumber;
-    }
-
-    public CustomerImpl copy() {
-        return new CustomerImpl(this);
     }
 
     private CustomerImpl(

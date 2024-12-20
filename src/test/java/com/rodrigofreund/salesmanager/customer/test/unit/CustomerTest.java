@@ -1,13 +1,20 @@
 package com.rodrigofreund.salesmanager.customer.test.unit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.rodrigofreund.salesmanager.customer.entity.model.CustomerImpl;
+import com.rodrigofreund.salesmanager.domain.Customer;
 
-import org.junit.jupiter.api.Test;
+public interface CustomerTest {
 
-public class CustomerTest {
+    final String customer1name = "Ana";
+    final String customer1socialName = "Ana Afonso";
+    final String customer1finantialNumber = "984930283930";
+    final String customer1socialNumber = "38472838";
 
-    @Test
-    void helloTesting() {
-        assertTrue(true);
+    default Customer createCustomer1() {
+        return CustomerImpl.of(
+                customer1name,
+                customer1socialName,
+                customer1finantialNumber,
+                customer1socialNumber);
     }
 }

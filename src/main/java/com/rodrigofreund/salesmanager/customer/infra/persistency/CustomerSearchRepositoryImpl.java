@@ -28,7 +28,8 @@ public class CustomerSearchRepositoryImpl implements CustomerSearchRepository {
 
         Predicate predicate = builder.conjunction();
 
-        SearchCriteriaToPredicateConsumer searchConsumer = new SearchCriteriaToPredicateConsumer(builder, predicate, from);
+        SearchCriteriaToPredicateConsumer<CustomerEntity> searchConsumer = 
+                new SearchCriteriaToPredicateConsumer<>(builder, predicate, from);
         params.stream().forEach(searchConsumer);
 
         criteriaQuery.where(searchConsumer.predicate());

@@ -3,7 +3,6 @@ package com.rodrigofreund.salesmanager.customer.infra.persistency;
 import java.util.function.Consumer;
 
 import com.rodrigofreund.salesmanager.customer.application.dto.SearchCriteria;
-import com.rodrigofreund.salesmanager.customer.infra.persistency.entity.CustomerEntity;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
@@ -13,13 +12,13 @@ import jakarta.persistence.criteria.Root;
  * It generates Predicate from SearchCriteria instance
  * 
  */
-public class SearchCriteriaToPredicateConsumer implements Consumer<SearchCriteria> {
+public class SearchCriteriaToPredicateConsumer<T> implements Consumer<SearchCriteria> {
 
     private Predicate predicate;
     private CriteriaBuilder builder;
-    private Root<CustomerEntity> from;
+    private Root<T> from;
 
-    public SearchCriteriaToPredicateConsumer(CriteriaBuilder builder, Predicate predicate, Root<CustomerEntity> from) {
+    public SearchCriteriaToPredicateConsumer(CriteriaBuilder builder, Predicate predicate, Root<T> from) {
         super();
         this.builder = builder;
         this.from = from;

@@ -82,9 +82,9 @@ public final class CustomerController {
 
         return ResponseEntity.ok(customerDetailList);
     }
-    
+
     @PutMapping
-    public ResponseEntity<CustomerDetail> updateCustomer(UpdateCustomerDto updateCustomerDto) {
+    public ResponseEntity<CustomerDetail> updateCustomer(@RequestBody UpdateCustomerDto updateCustomerDto) {
         var updatedCustomer = this.updateCustomer.update(customerMapper.toCustomer(updateCustomerDto));
         return ResponseEntity.ok(customerMapper.toCustomerDetail(updatedCustomer));
     }

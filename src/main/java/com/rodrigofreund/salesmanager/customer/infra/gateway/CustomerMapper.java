@@ -2,6 +2,7 @@ package com.rodrigofreund.salesmanager.customer.infra.gateway;
 
 import com.rodrigofreund.salesmanager.customer.application.dto.CreateCustomerDto;
 import com.rodrigofreund.salesmanager.customer.application.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.application.dto.UpdateCustomerDto;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.entity.CustomerEntity;
 import com.rodrigofreund.salesmanager.domain.Customer;
 
@@ -14,6 +15,9 @@ public interface CustomerMapper {
     Customer toCustomer(CreateCustomerDto entity);
 
     CustomerDetail toCustomerDetail(Customer customer);
+    
+    Customer toCustomer(UpdateCustomerDto updateCustomer);
+
 
 
 }

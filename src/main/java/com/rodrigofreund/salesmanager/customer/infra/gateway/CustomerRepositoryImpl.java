@@ -2,6 +2,7 @@ package com.rodrigofreund.salesmanager.customer.infra.gateway;
 
 import java.util.List;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
@@ -9,6 +10,7 @@ import com.rodrigofreund.salesmanager.customer.application.dto.SearchCriteria;
 import com.rodrigofreund.salesmanager.customer.entity.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerJpaRepository;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerSearchRepository;
+import com.rodrigofreund.salesmanager.customer.infra.persistency.entity.CustomerEntity;
 import com.rodrigofreund.salesmanager.domain.Customer;
 
 /**
@@ -37,6 +39,23 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         return mapper.toCustomer(
                 repository.save(
                         mapper.toCustomerEntity(newCustomer)));
+    }
+
+    @Override
+    public Customer update(Customer customer) {
+
+        var currentCustomer = this.repository.findById(customer.id()).orElseThrow();
+
+        var customerToPersist = CustomerEntity.builder()
+                .id(currentCustomer.getId())
+                .name(Strings.isBlank(customer.name()) ? currentCustomer.getName() : customer.name())
+                .socialName(Strings.isBlank(customer.socialName()) ? currentCustomer.getSocialName() : customer.socialName())
+                .socialNumber(Strings.isBlank(customer.socialNumber()) ? currentCustomer.getSocialNumber() : customer.socialNumber())
+                .finantialNumber(Strings.isBlank(customer.finantialNumber()) ? currentCustomer.getFinantialNumber() : customer.finantialNumber())
+                .build();
+
+        return mapper.toCustomer(repository.save(customerToPersist));
+
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,8 +14,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.rodrigofreund.salesmanager.customer.application.dto.CreateCustomerDto;
 import com.rodrigofreund.salesmanager.customer.application.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.application.dto.UpdateCustomerDto;
 import com.rodrigofreund.salesmanager.customer.application.usecase.CreateCustomer;
 import com.rodrigofreund.salesmanager.customer.application.usecase.RetriveCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecase.UpdateCustomer;
 import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapper;
 
 @RestController
@@ -24,15 +27,18 @@ public final class CustomerController {
     private final CreateCustomer createCustomer;
     private final RetriveCustomer retriveCustomer;
     private final CustomerMapper customerMapper;
+    private final UpdateCustomer updateCustomer;
 
     public CustomerController(
             CreateCustomer createCustomer,
             CustomerMapper customerMapper,
-            RetriveCustomer retriveCustomer) {
+            RetriveCustomer retriveCustomer,
+            UpdateCustomer updateCustomer) {
 
         this.createCustomer = createCustomer;
         this.customerMapper = customerMapper;
         this.retriveCustomer = retriveCustomer;
+        this.updateCustomer = updateCustomer;
     }
 
     @PostMapping
@@ -64,7 +70,7 @@ public final class CustomerController {
 
         return ResponseEntity.ok(customerDetailList);
     }
-    
+
     @GetMapping("/search")
     public ResponseEntity<List<CustomerDetail>> getCustomerList(
             @RequestParam(defaultValue = "") String search) {
@@ -75,6 +81,12 @@ public final class CustomerController {
                 .toList();
 
         return ResponseEntity.ok(customerDetailList);
+    }
+    
+    @PutMapping
+    public ResponseEntity<CustomerDetail> updateCustomer(UpdateCustomerDto updateCustomerDto) {
+        var updatedCustomer = this.updateCustomer.update(customerMapper.toCustomer(updateCustomerDto));
+        return ResponseEntity.ok(customerMapper.toCustomerDetail(updatedCustomer));
     }
 
 }

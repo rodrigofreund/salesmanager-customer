@@ -15,4 +15,6 @@ public interface CustomerRepository {
 
     List<Customer> search(String search);
 
+    Customer update(Customer customer);
+
 }

@@ -2,6 +2,7 @@ package com.rodrigofreund.salesmanager.customer.infra.gateway;
 
 import com.rodrigofreund.salesmanager.customer.application.dto.CreateCustomerDto;
 import com.rodrigofreund.salesmanager.customer.application.dto.CustomerDetail;
+import com.rodrigofreund.salesmanager.customer.application.dto.UpdateCustomerDto;
 import com.rodrigofreund.salesmanager.customer.entity.model.CustomerImpl;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.entity.CustomerEntity;
 import com.rodrigofreund.salesmanager.domain.Customer;
@@ -40,6 +41,20 @@ public class CustomerMapperImpl implements CustomerMapper {
 
     @Override
     public Customer toCustomer(CreateCustomerDto entity) {
-        return CustomerImpl.of(entity.name(), entity.socialName(), entity.finantialNumber(), entity.socialNumber());
+        return CustomerImpl.of(
+                entity.name(),
+                entity.socialName(),
+                entity.finantialNumber(),
+                entity.socialNumber());
+    }
+
+    @Override
+    public Customer toCustomer(UpdateCustomerDto updateCustomer) {
+        return CustomerImpl.of(
+                updateCustomer.id(),
+                updateCustomer.name(),
+                updateCustomer.socialName(),
+                updateCustomer.finantialNumber(),
+                updateCustomer.socialNumber());
     }
 }

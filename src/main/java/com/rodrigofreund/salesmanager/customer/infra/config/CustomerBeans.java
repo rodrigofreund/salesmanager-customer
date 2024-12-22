@@ -7,6 +7,8 @@ import com.rodrigofreund.salesmanager.customer.application.usecase.CreateCustome
 import com.rodrigofreund.salesmanager.customer.application.usecase.CreateCustomerImpl;
 import com.rodrigofreund.salesmanager.customer.application.usecase.RetriveCustomer;
 import com.rodrigofreund.salesmanager.customer.application.usecase.RetriveCustomerImpl;
+import com.rodrigofreund.salesmanager.customer.application.usecase.UpdateCustomer;
+import com.rodrigofreund.salesmanager.customer.application.usecase.UpdateCustomerImpl;
 import com.rodrigofreund.salesmanager.customer.entity.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapper;
 import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapperImpl;
@@ -29,10 +31,10 @@ public class CustomerBeans {
 
     @Bean
     public CustomerRepository CustomerRepository(
-            CustomerJpaRepository repository,
+            CustomerJpaRepository jpaRepository,
             CustomerSearchRepository searchRepository,
-            CustomerMapper factory) {
-        return new CustomerRepositoryImpl(repository, searchRepository, factory);
+            CustomerMapper mapper) {
+        return new CustomerRepositoryImpl(jpaRepository, searchRepository, mapper);
     }
 
     @Bean
@@ -46,7 +48,13 @@ public class CustomerBeans {
     }
 
     @Bean
+    public UpdateCustomer createUpdateCustomer(CustomerRepository repository) {
+        return new UpdateCustomerImpl(repository);
+    }
+
+    @Bean
     public CustomerSearchRepository createCustomerSearchRepository() {
         return new CustomerSearchRepositoryImpl();
     }
+
 }

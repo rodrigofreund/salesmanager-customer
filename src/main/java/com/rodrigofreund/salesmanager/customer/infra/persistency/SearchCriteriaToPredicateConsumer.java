@@ -32,8 +32,6 @@ public class SearchCriteriaToPredicateConsumer implements Consumer<SearchCriteri
         var key = searchCriteria.key();
         var value = searchCriteria.value();
         var operation = searchCriteria.operation();
-        
-        boolean isLike = isStringField(key);
 
         switch(operation) {
             case ">":
@@ -43,7 +41,7 @@ public class SearchCriteriaToPredicateConsumer implements Consumer<SearchCriteri
                 predicate = builder.and(predicate, builder.lessThanOrEqualTo(from.get(key), value.toString()));
                 break;
             case ":": {
-                    if (isLike) {
+                    if (isStringField(key)) {
                         predicate = builder.and(predicate, builder.like(
                           from.get(key), "%" + value + "%"));
                     } else {
@@ -58,12 +56,11 @@ public class SearchCriteriaToPredicateConsumer implements Consumer<SearchCriteri
         }
     }
 
-    private boolean isStringField(String key) {
-        return from.get(key).getJavaType() == String.class;
-    }
-
     public Predicate predicate () {
         return this.predicate;
     }
 
+    private boolean isStringField(String key) {
+        return from.get(key).getJavaType() == String.class;
+    }
 }

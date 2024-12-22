@@ -3,7 +3,7 @@ package com.rodrigofreund.salesmanager.customer.test.unit;
 import com.rodrigofreund.salesmanager.customer.entity.model.CustomerImpl;
 import com.rodrigofreund.salesmanager.domain.Customer;
 
-public interface CustomerTest {
+public interface AbstractCustomerTest {
 
     final String customer1name = "Ana";
     final String customer1socialName = "Ana Afonso";

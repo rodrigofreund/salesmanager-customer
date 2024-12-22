@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import com.rodrigofreund.salesmanager.customer.application.dto.SearchCriteria;
 import com.rodrigofreund.salesmanager.customer.entity.gateway.CustomerRepository;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerJpaRepository;
+import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerSearchRepository;
 import com.rodrigofreund.salesmanager.domain.Customer;
 
 /**
@@ -16,11 +18,18 @@ import com.rodrigofreund.salesmanager.domain.Customer;
 public class CustomerRepositoryImpl implements CustomerRepository {
 
     private CustomerJpaRepository repository;
+    private CustomerSearchRepository searchRepository;
     private CustomerMapper mapper;
 
-    public CustomerRepositoryImpl(CustomerJpaRepository repository, CustomerMapper factory) {
+    public CustomerRepositoryImpl(
+            CustomerJpaRepository repository,
+            CustomerSearchRepository searchRepository,
+            CustomerMapper factory) {
+
         this.repository = repository;
+        this.searchRepository = searchRepository;
         this.mapper = factory;
+
     }
 
     @Override
@@ -32,11 +41,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public List<Customer> list(Integer page, Integer size, String sort) {
-
         return repository.findAll(PageRequest.of(page, size, Sort.by(sort)))
                 .map(mapper::toCustomer)
                 .getContent();
+    }
 
+    @Override
+    public List<Customer> search(String search) {
+        return searchRepository.findByCriteria(SearchCriteria.from(search))
+                .stream().map(mapper::toCustomer)
+                .toList();
     }
 
 }

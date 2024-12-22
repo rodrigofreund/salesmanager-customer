@@ -13,4 +13,6 @@ public interface CustomerRepository {
 
     List<Customer> list(Integer page, Integer size, String sort);
 
+    List<Customer> search(String search);
+
 }

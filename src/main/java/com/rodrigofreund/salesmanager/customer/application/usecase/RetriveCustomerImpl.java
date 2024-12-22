@@ -18,4 +18,9 @@ public class RetriveCustomerImpl implements RetriveCustomer {
         return repository.list(page, size, sort);
     }
 
+    @Override
+    public List<Customer> getCustomerByFilter(String filter) {
+        return this.repository.search(filter);
+    }
+
 }

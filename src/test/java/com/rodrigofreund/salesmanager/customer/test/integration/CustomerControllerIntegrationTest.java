@@ -51,6 +51,20 @@ public class CustomerControllerIntegrationTest {
     }
 
     @Test
+    void getSearchForAllCustomers() {
+        var response = this.restTemplate.getForEntity("/customer/search", List.class);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+        assertTrue(response.getBody().size() > 0);
+    }
+
+    @Test
+    void getSearchForCustomerByName() {
+        var response = this.restTemplate.getForEntity("/customer/search?search=name:Rodrigo", List.class);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+        assertTrue(response.getBody().size() > 0);
+    }
+
+    @Test
     void postCustomerRegister() throws Exception {
 
         CreateCustomerDto customerRegister =

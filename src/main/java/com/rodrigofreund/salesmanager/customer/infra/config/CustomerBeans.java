@@ -12,6 +12,8 @@ import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapper;
 import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerMapperImpl;
 import com.rodrigofreund.salesmanager.customer.infra.gateway.CustomerRepositoryImpl;
 import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerJpaRepository;
+import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerSearchRepository;
+import com.rodrigofreund.salesmanager.customer.infra.persistency.CustomerSearchRepositoryImpl;
 
 /**
  * Class responsible for beans creation
@@ -26,8 +28,11 @@ public class CustomerBeans {
     }
 
     @Bean
-    public CustomerRepository CustomerRepository(CustomerJpaRepository repository, CustomerMapper factory) {
-        return new CustomerRepositoryImpl(repository, factory);
+    public CustomerRepository CustomerRepository(
+            CustomerJpaRepository repository,
+            CustomerSearchRepository searchRepository,
+            CustomerMapper factory) {
+        return new CustomerRepositoryImpl(repository, searchRepository, factory);
     }
 
     @Bean
@@ -38,5 +43,10 @@ public class CustomerBeans {
     @Bean
     public RetriveCustomer createRetriveCustomer(CustomerRepository repository) {
         return new RetriveCustomerImpl(repository);
+    }
+
+    @Bean
+    public CustomerSearchRepository createCustomerSearchRepository() {
+        return new CustomerSearchRepositoryImpl();
     }
 }

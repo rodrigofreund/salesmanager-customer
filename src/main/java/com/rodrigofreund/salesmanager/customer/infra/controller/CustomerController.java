@@ -64,5 +64,17 @@ public final class CustomerController {
 
         return ResponseEntity.ok(customerDetailList);
     }
+    
+    @GetMapping("/search")
+    public ResponseEntity<List<CustomerDetail>> getCustomerList(
+            @RequestParam(defaultValue = "") String search) {
+
+        var customerDetailList =
+                this.retriveCustomer.getCustomerByFilter(search)
+                .stream().map(customerMapper::toCustomerDetail)
+                .toList();
+
+        return ResponseEntity.ok(customerDetailList);
+    }
 
 }

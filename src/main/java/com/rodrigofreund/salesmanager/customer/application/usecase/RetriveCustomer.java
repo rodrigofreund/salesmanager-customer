@@ -8,4 +8,6 @@ public interface RetriveCustomer {
 
     List<Customer> listCustomer(Integer page, Integer size, String sort);
 
+    List<Customer> getCustomerByFilter(String filter);
+
 }

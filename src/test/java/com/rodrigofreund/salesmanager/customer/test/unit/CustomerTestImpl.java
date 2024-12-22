@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.rodrigofreund.salesmanager.customer.entity.model.CustomerImpl;
 
-public class CustomerTestImpl implements CustomerTest {
+public class CustomerTestImpl implements AbstractCustomerTest {
 
     @Test
     void whenCreatingCustomer_thenSuccess() {

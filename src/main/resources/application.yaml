@@ -11,7 +11,7 @@ spring:
       pageable:
         size-parameter: 10
   datasource:
-    url: jdbc:h2:mem:mydb;MODE=MySQL
+    url: jdbc:h2:mem:customerdb;MODE=MySQL
     username: sa
     password: password
     driverClassName: org.h2.Driver

@@ -41,15 +41,27 @@ public final class CustomerController {
         this.updateCustomer = updateCustomer;
     }
 
+    @GetMapping
+    public ResponseEntity<List<CustomerDetail>> getCustomerList(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size,
+            @RequestParam(defaultValue = "name") String sort) {
+
+        var customerDetailList = this.retriveCustomer.listCustomer(page, size, sort)
+                .stream().map(customerMapper::toCustomerDetail)
+                .toList();
+
+        return ResponseEntity.ok(customerDetailList);
+    }
+
     @PostMapping
     public ResponseEntity<CustomerDetail> createCustomer(
             @RequestBody CreateCustomerDto newCustomer,
             UriComponentsBuilder uriBuilder) {
 
-        var customerDetail =
-                customerMapper.toCustomerDetail(
-                        createCustomer.createCustomer(
-                                customerMapper.toCustomer(newCustomer)));
+        var customerDetail = customerMapper.toCustomerDetail(
+                createCustomer.createCustomer(
+                        customerMapper.toCustomer(newCustomer)));
 
         var uri = uriBuilder.path("/customer/{id}")
                 .buildAndExpand(customerDetail.id()).toUri();
@@ -57,26 +69,11 @@ public final class CustomerController {
         return ResponseEntity.created(uri).body(customerDetail);
     }
 
-    @GetMapping
-    public ResponseEntity<List<CustomerDetail>> getCustomerList(
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(defaultValue = "name") String sort) {
-        
-        var customerDetailList =
-                this.retriveCustomer.listCustomer(page, size, sort)
-                .stream().map(customerMapper::toCustomerDetail)
-                .toList();
-
-        return ResponseEntity.ok(customerDetailList);
-    }
-
     @GetMapping("/search")
     public ResponseEntity<List<CustomerDetail>> getCustomerList(
             @RequestParam(defaultValue = "") String search) {
 
-        var customerDetailList =
-                this.retriveCustomer.getCustomerByFilter(search)
+        var customerDetailList = this.retriveCustomer.getCustomerByFilter(search)
                 .stream().map(customerMapper::toCustomerDetail)
                 .toList();
 
@@ -84,9 +81,9 @@ public final class CustomerController {
     }
 
     @PutMapping
-    public ResponseEntity<CustomerDetail> updateCustomer(@RequestBody UpdateCustomerDto updateCustomerDto) {
-        var updatedCustomer = this.updateCustomer.update(customerMapper.toCustomer(updateCustomerDto));
-        return ResponseEntity.ok(customerMapper.toCustomerDetail(updatedCustomer));
+    public ResponseEntity<Void> updateCustomer(@RequestBody UpdateCustomerDto updateCustomerDto) {
+        this.updateCustomer.update(customerMapper.toCustomer(updateCustomerDto));
+        return ResponseEntity.noContent().build();
     }
 
 }

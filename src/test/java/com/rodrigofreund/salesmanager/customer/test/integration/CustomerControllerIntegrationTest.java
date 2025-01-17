@@ -23,20 +23,7 @@ public class CustomerControllerIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    
-    /*
-    
 
-    @Test
-    void getCustomerDetail() throws Exception {
-        var code = this.restTemplate
-                .getForEntity(
-                        "/salesmanager-customer/1",
-                        CustomerDetail.class).getStatusCode();
-        assertTrue(code.is2xxSuccessful());
-    }
-    */
-    
     @Test
     void getCustomerList() {
         var code = this.restTemplate.getForEntity("/customer", List.class).getStatusCode();
@@ -49,6 +36,17 @@ public class CustomerControllerIntegrationTest {
         assertTrue(response.getStatusCode().is2xxSuccessful());
         assertTrue(response.getBody().size() == 5);
     }
+    
+    /*
+    @Test
+    void getCustomerDetail() throws Exception {
+        var code = this.restTemplate
+                .getForEntity(
+                        "/salesmanager-customer/1",
+                        CustomerDetail.class).getStatusCode();
+        assertTrue(code.is2xxSuccessful());
+    }
+    */
 
     @Test
     void getSearchForAllCustomers() {

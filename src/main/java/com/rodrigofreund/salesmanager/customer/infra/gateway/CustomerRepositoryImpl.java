@@ -47,11 +47,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         var currentCustomer = this.repository.findById(customer.id()).orElseThrow();
 
         var customerToPersist = CustomerEntity.builder()
-                .id(currentCustomer.getId())
-                .name(Strings.isBlank(customer.name()) ? currentCustomer.getName() : customer.name())
-                .socialName(Strings.isBlank(customer.socialName()) ? currentCustomer.getSocialName() : customer.socialName())
-                .socialNumber(Strings.isBlank(customer.socialNumber()) ? currentCustomer.getSocialNumber() : customer.socialNumber())
-                .finantialNumber(Strings.isBlank(customer.finantialNumber()) ? currentCustomer.getFinantialNumber() : customer.finantialNumber())
+                .id(
+                        currentCustomer.getId())
+                .name(
+                        Strings.isBlank(customer.name()) ? currentCustomer.getName() : customer.name())
+                .socialName(
+                        Strings.isBlank(customer.socialName()) ? currentCustomer.getSocialName() : customer.socialName())
+                .socialNumber(
+                        Strings.isBlank(customer.socialNumber()) ? currentCustomer.getSocialNumber() : customer.socialNumber())
+                .finantialNumber(
+                        Strings.isBlank(customer.finantialNumber()) ? currentCustomer.getFinantialNumber() : customer.finantialNumber())
                 .build();
 
         return mapper.toCustomer(repository.save(customerToPersist));
